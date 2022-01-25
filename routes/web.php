@@ -22,3 +22,4 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/admin/home', 'HomeController@admin')->name('admin.home')->middleware('is_admin');
+Route::get('/pelanggan','UserController@index')->name('pelanggan')->middleware('is_admin');
