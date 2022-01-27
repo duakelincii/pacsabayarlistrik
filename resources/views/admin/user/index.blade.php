@@ -29,8 +29,6 @@
     <div class="card shadow mb-4">
         <div class="card-header d-sm-flex align-items-center justify-content-between py-3">
             <h6 class="m-0 font-weight-bold text-primary">Daftar Pelanggan Listrik Murah</h6>
-            <a href="" class="d-none d-sm-inline-block btn btn-primary btn-sm shadow-sm">
-            <i class="fas fa-plus fa-sm"></i> Tambah Pengguna</a>
         </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -58,23 +56,23 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                 
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td>
-                        <a href ="" class="btn btn-sm btn-icon-split btn-warning">
-                            <span class="icon"><i class="fa fa-pen" style="padding-top: 4px;"></i></span><span class="text">Edit</span>
-                        </a>
-                        <a href="javascript:;" data-toggle="modal" onclick="" data-target="#DeleteModal" class="btn btn-sm btn-icon-split btn-danger">
-                            <span class="icon"><i class="fa  fa-trash" style="padding-top: 4px;"></i></span><span class="text">Hapus</span></a>
-
-                      </td>
-                    </tr>
+                 @foreach ($users as $p)
+                 <tr>
+                     <td>{{$p->no_pelanggan}}</td>
+                     <td>{{$p->name}}</td>
+                     <td>{{$p->email}}</td>
+                     <td>{{$p->alamat}}</td>
+                     <td>{{$p->phone}}</td>
+                     <td>{{$p->tarif->no_tarif}}</td>
+                     <td>
+                         <a href ="" class="btn btn-sm btn-icon-split btn-warning">
+                             <span class="icon"><i class="fa fa-pen" style="padding-top: 4px;"></i></span><span class="text">Edit</span>
+                            </a>
+                            <a href="javascript:;" data-toggle="modal" onclick="" data-target="#DeleteModal" class="btn btn-sm btn-icon-split btn-danger">
+                                <span class="icon"><i class="fa  fa-trash" style="padding-top: 4px;"></i></span><span class="text">Hapus</span></a>
+                            </td>
+                        </tr>
+                        @endforeach
 
                   </tbody>
                 </table>

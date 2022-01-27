@@ -65,12 +65,12 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Daftar Tarif Pelanggan </a>
-                        <a class="collapse-item" href="cards.html">Tambah Tarif Pelanggan</a>
+                        <a class="collapse-item" href="{{route('tarif')}}">Daftar Tarif Pelanggan </a>
+                        <a class="collapse-item" href="{{route('tambah.tarif')}}">Tambah Tarif Pelanggan</a>
                     </div>
                 </div>
             </li>
-            
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#tarifTwo"
@@ -80,7 +80,7 @@
                 </a>
                 <div id="tarifTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">penggunaan Pelanggan </a>
+                        <a class="collapse-item" href="buttons.html">Penggunaan Pelanggan </a>
                         <a class="collapse-item" href="cards.html">Tagihan Pelanggan</a>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>Daftar Pembayaran</span></a>
             </li>
 
             <!-- Divider -->
@@ -222,6 +222,29 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
+                     <!-- Pesan Berhasil -->
+@if (session()->has('pesan'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+       <p class="mb-0">
+           {{ session()->get('pesan') }}
+       </p>
+       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+       </button>
+   </div>
+@endif
+
+ <!-- error Berhasil -->
+ @if (session()->has('error'))
+ <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p class="mb-0">
+            {{ session()->get('error') }}
+        </p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
                     @yield('content')
 
                 </div>
