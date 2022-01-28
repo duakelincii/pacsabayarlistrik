@@ -38,6 +38,14 @@ Route::group(['middleware' => 'auth','is_admin'] , function(){
     Route::get('/edit/tarif/{id}','TarifController@edit')->name('edit.tarif');
     Route::post('/update/tarif','TarifController@update')->name('update.tarif');
     Route::delete('/tarif/hapus/{id}','TarifController@delete')->name('hapus.tarif');
+
+    //penggunaan
+    Route::get('/penggunaan','PenggunaanController@index')->name('penggunaan');
+    Route::get('/penggunaan/tambah','PenggunaanController@create')->name('tambah.penggunaan');
+    Route::post('/penggunaan/simpan','PenggunaanController@store')->name('simpan.penggunaan');
+    Route::get('/edit/penggunaan/{id}','PenggunaanController@edit')->name('edit.penggunaan');
+    Route::post('/update/penggunaan','PenggunaanController@update')->name('update.penggunaan');
+    Route::delete('/penggunaan/hapus/{id}','PenggunaanController@destroy')->name('hapus.penggunaan');
 });
 
 

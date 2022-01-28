@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Penggunaan;
 use Illuminate\Http\Request;
 
 class PenggunaanController extends Controller
@@ -13,7 +14,8 @@ class PenggunaanController extends Controller
      */
     public function index()
     {
-        //
+        $pakai = Penggunaan::all();
+        return view('admin.penggunaan.index',compact('pakai'));
     }
 
     /**
@@ -23,7 +25,7 @@ class PenggunaanController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.penggunaan.tambah');
     }
 
     /**

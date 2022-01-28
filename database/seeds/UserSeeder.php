@@ -20,7 +20,8 @@ class UserSeeder extends Seeder
             'password'  => Hash::make('password'),
             'phone'     => '085157664203',
             'is_admin'  => '1',
-            'avatar'    => 'default.jpg'
+            'avatar'    => 'default.jpg',
+            'id_tarif'  => '1',
         ]);
 
         DB::table('users')->insert([
@@ -30,7 +31,8 @@ class UserSeeder extends Seeder
             'password'  => Hash::make('password'),
             'phone'     => '085157664204',
             'is_admin'  => '0',
-            'avatar'    => 'default.jpg'
+            'avatar'    => 'default.jpg',
+            'id_tarif'  => '1',
         ]);
     }
 }
