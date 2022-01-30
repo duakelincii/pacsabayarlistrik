@@ -20,6 +20,13 @@
     <!-- Custom styles for this template-->
     <link href="{{URL::asset('assets/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
+        <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -106,6 +113,12 @@
                 <a class="nav-link" href="{{route('pelanggan')}}">
                 <i class="fas fa-users-cog"></i>
                     <span>Pelanggan</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('pelanggan')}}">
+                <i class="fas fa-users-cog"></i>
+                    <span>Admin</span></a>
             </li>
 
             <!-- Nav Item - Tables -->

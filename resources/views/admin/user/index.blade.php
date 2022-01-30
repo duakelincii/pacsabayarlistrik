@@ -29,6 +29,8 @@
     <div class="card shadow mb-4">
         <div class="card-header d-sm-flex align-items-center justify-content-between py-3">
             <h6 class="m-0 font-weight-bold text-primary">Daftar Pelanggan Listrik Murah</h6>
+            <a href="{{route('register')}}" class="d-none d-sm-inline-block btn btn-primary btn-sm shadow-sm">
+                <i class="fas fa-plus fa-sm"></i>Tambah</a>
         </div>
             <div class="card-body">
               <div class="table-responsive">

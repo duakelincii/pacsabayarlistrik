@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Penggunaan;
+use App\User;
 use Illuminate\Http\Request;
 
 class PenggunaanController extends Controller
@@ -23,9 +24,10 @@ class PenggunaanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.penggunaan.tambah');
+        $pelanggan = User::get();
+        return view('admin.penggunaan.tambah',compact('pelanggan'));
     }
 
     /**
@@ -45,7 +47,7 @@ class PenggunaanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function createid($id)
     {
         //
     }

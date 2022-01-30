@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth','is_admin'] , function(){
     //penggunaan
     Route::get('/penggunaan','PenggunaanController@index')->name('penggunaan');
     Route::get('/penggunaan/tambah','PenggunaanController@create')->name('tambah.penggunaan');
+    Route::get('/penggunaan/tambah/{id}','PenggunaanController@createid')->name('create.id');
     Route::post('/penggunaan/simpan','PenggunaanController@store')->name('simpan.penggunaan');
     Route::get('/edit/penggunaan/{id}','PenggunaanController@edit')->name('edit.penggunaan');
     Route::post('/update/penggunaan','PenggunaanController@update')->name('update.penggunaan');

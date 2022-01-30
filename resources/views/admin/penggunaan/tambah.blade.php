@@ -13,36 +13,52 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-address-card"></i></div>
                     </div>
-                <input type="number" class="form-control " name="tarif_kwh"  placeholder="Harga Kwh" required>
-            </div></div>
+                <select name="id_user" id="id_user" class="form-control">
+                    <option value="">Pilih Pelanggan</option>
+                    @foreach ( $pelanggan as $user )
+                    <option value="{{$user->id}}">{{$user->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
+                    </div>
+                <input type="number" class="form-control " name="bulan"  placeholder="Bulan Penggunaan" required readonly>
+            </div>
+        </div>
         </div>
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fas fa-vote-yea"></i></div>
+                            <div class="input-group-text"><i class="fas fa-arrow-up"></i></div>
                         </div>
-                    <input type="text" class="form-control " name="golongan"  placeholder="Golongan" required>
+                    <input type="text" class="form-control " name="meter_awal"  placeholder="Meter Awal" required readonly>
                     </div>
                 </div>
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fas fa-bolt"></i></div>
+                            <div class="input-group-text"><i class="fas fa-arrow-down"></i></div>
                         </div>
-                    <input type="text" class="form-control " name="daya"  placeholder="Daya" required>
+                    <input type="text" class="form-control " name="mete_akhir"  placeholder="Meter Akhir" required>
                     </div>
                 </div>
             </div>
-
             <div class="form-group row">
                 <div class="col-sm-12">
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fas fa-dollar-sign"></i></div>
+                            <div class="input-group-text"><i class="fas fa-calendar-check"></i></div>
                         </div>
-                    <input type="number" class="form-control " name="tarif_kwh"  placeholder="Harga Kwh" required>
-                </div></div>
+                    <input type="date" class="form-control " name="tgl_cek"  placeholder="Tanggal Pengecheckan" required>
+                </div>
+            </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-6">
