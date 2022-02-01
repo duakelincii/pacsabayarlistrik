@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\DB;
 
 class IsAdmin
 {
@@ -16,6 +17,8 @@ class IsAdmin
     public function handle($request, Closure $next)
     {
         if(auth()->user()->is_admin == 1){
+            return $next($request);
+        }else if(DB::table('pelanggan')->is_admin == 1){
             return $next($request);
         }
 

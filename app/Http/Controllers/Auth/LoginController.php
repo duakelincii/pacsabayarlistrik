@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -45,11 +46,11 @@ class LoginController extends Controller
             'email'     => 'required|string',
             'password'  => 'required|string|min:8',
         ]);
-    
-    
+
+
         $remember = $request->has('remember') ? true : false;
         $loginType = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-    
+
         $login = [
             $loginType => $request->email,
             'password' => $request->password,
@@ -58,7 +59,7 @@ class LoginController extends Controller
         if (auth()->attempt($login,$remember)) {
             if (auth()->user()->is_admin == 1) {
                 return redirect()->route('admin.home');
-            }else{
+            }else if(DB::table('pelanggan')->is_admin == 0){
                 return redirect()->route('home');
             }
         }else{

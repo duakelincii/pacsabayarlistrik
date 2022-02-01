@@ -29,7 +29,11 @@ Route::group(['middleware' => 'auth'] , function(){
 Route::group(['middleware' => 'auth','is_admin'] , function(){
 
     Route::get('/admin/home', 'HomeController@admin')->name('admin.home');
-    Route::get('/pelanggan','UserController@index')->name('pelanggan');
+
+    //pelanggan
+    Route::get('/pelanggan','PelangganController@index')->name('pelanggan');
+    Route::get('/tambah/pelanggan','PelangganController@create')->name('tambah.pelanggan');
+    Route::post('/simpan/pelanggan','PelangganController@store')->name('simpan.pelanggan');
 
     //tarif
     Route::get('/tarif','TarifController@index')->name('tarif');
@@ -42,11 +46,20 @@ Route::group(['middleware' => 'auth','is_admin'] , function(){
     //penggunaan
     Route::get('/penggunaan','PenggunaanController@index')->name('penggunaan');
     Route::get('/penggunaan/tambah','PenggunaanController@create')->name('tambah.penggunaan');
-    Route::get('/penggunaan/tambah/{id}','PenggunaanController@createid')->name('create.id');
     Route::post('/penggunaan/simpan','PenggunaanController@store')->name('simpan.penggunaan');
     Route::get('/edit/penggunaan/{id}','PenggunaanController@edit')->name('edit.penggunaan');
     Route::post('/update/penggunaan','PenggunaanController@update')->name('update.penggunaan');
     Route::delete('/penggunaan/hapus/{id}','PenggunaanController@destroy')->name('hapus.penggunaan');
+
+    //tagihan
+    Route::get('/tagihan','TagihanController@index')->name('tagihan');
+    Route::get('/tambah/tagihan','TagihanController@create')->name('tambah.tagihan');
+    Route::post('/simpan/tagihan','TagihanController@store')->name('simpan.tagihan');
+    Route::get('/tagihan/edit/{id}','TagihanController@edit')->name('edit.tagihan');
+    Route::post('/update/tagihan','TagihanController@update')->name('update.tagihan');
+    Route::delete('/tagihan/{id}','TagihanController@destroy')->name('hapus.tagihan');
 });
+
+Route::get('/pembayaran','PembayaranController@index')->name('pembayaran')->middleware('auth');
 
 

@@ -9,11 +9,11 @@ class Penggunaan extends Model
     protected $table = 'penggunaan';
     protected $fillable =
     [
-        'id_user','bulan','tahun','meter_awal','meter_akhir',
+        'id_user','penggunaan','meter_awal','meter_akhir','tgl_cek'
     ];
 
-    public function user()
+    public function pelanggan()
     {
-        return $this->belongsTo(Penggunaan::class,'id_user','id');
+        return $this->belongsTo(Pelanggan::class,'id_user','id');
     }
 }

@@ -20,12 +20,7 @@
     <!-- Custom styles for this template-->
     <link href="{{URL::asset('assets/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
-        <!-- CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-    <!-- Script -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 </head>
 
@@ -85,17 +80,17 @@
                     <i class="fas fa-file-alt"></i>
                     <span>Pemakaian Listrik</span>
                 </a>
-                <div id="tarifTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="tarifTwo" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{route('penggunaan')}}">Penggunaan Pelanggan </a>
-                        <a class="collapse-item" href="cards.html">Tagihan Pelanggan</a>
+                        <a class="collapse-item" href="{{route('tagihan')}}">Tagihan Pelanggan</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{route('pembayaran')}}">
                 <i class="fas fa-cart-arrow-down"></i>
                     <span>Pembayaran</span></a>
             </li>
@@ -116,7 +111,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{route('pelanggan')}}">
+                <a class="nav-link" href="">
                 <i class="fas fa-users-cog"></i>
                     <span>Admin</span></a>
             </li>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Pelanggan;
 use App\Penggunaan;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PenggunaanController extends Controller
 {
@@ -26,7 +28,7 @@ class PenggunaanController extends Controller
      */
     public function create(Request $request)
     {
-        $pelanggan = User::get();
+        $pelanggan = Pelanggan::get();
         return view('admin.penggunaan.tambah',compact('pelanggan'));
     }
 
@@ -38,29 +40,22 @@ class PenggunaanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('penggunaan')->insert([
+            'id_user'       => $request->id_user,
+            'penggunaan'    => $request->penggunaan,
+            'meter_awal'    => $request->meter_awal,
+            'meter_akhir'   => $request->meter_akhir,
+            'tgl_cek'       => $request->tgl_cek,
+        ]);
+
+        $pesan = 'data penggunaan berhasil disimpan';
+        return redirect(route('penggunaan'))->with('pesan',$pesan);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function createid($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $data = Penggunaan::where('id',$id)->get();
+        return view('admin.penggunaan.edit',compact('data'));
     }
 
     /**
@@ -70,9 +65,19 @@ class PenggunaanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        DB::table('penggunaan')->where('id',$request->id)->update(
+        [
+            'id_user'       => $request->id_user,
+            'penggunaan'    => $request->penggunaan,
+            'meter_awal'    => $request->meter_awal,
+            'meter_akhir'   => $request->meter_akhir,
+            'tgl_cek'       => $request->tgl_cek,
+        ]);
+
+        $pesan = 'data penggunaan berhasil diupdate';
+        return redirect(route('penggunaan'))->with('pesan',$pesan);
     }
 
     /**
@@ -83,6 +88,9 @@ class PenggunaanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pengguna = Penggunaan::findOrFail($id);
+        $pengguna->delete();
+        $error = 'data penggunaan berhasil dihapus';
+        return redirect(route('penggunaan'))->with('error',$error);
     }
 }

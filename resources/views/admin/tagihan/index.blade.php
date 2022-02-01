@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <!--Modal Konfirmasi Delete-->
+<!--Modal Konfirmasi Delete-->
 <div id="DeleteModal" class="modal fade text-danger" role="dialog">
     <div class="modal-dialog modal-dialog modal-dialog-centered ">
       <!-- Modal content-->
@@ -28,8 +28,8 @@
  <!--End Modal-->
      <div class="card shadow mb-4">
          <div class="card-header d-sm-flex align-items-center justify-content-between py-3">
-             <h6 class="m-0 font-weight-bold text-primary">Data Penggunaan Pelanggan</h6>
-             <a href="{{route('tambah.penggunaan')}}" class="d-none d-sm-inline-block btn btn-primary btn-sm shadow-sm">
+             <h6 class="m-0 font-weight-bold text-primary">Data Tarif</h6>
+             <a href="{{route('tambah.tagihan')}}" class="d-none d-sm-inline-block btn btn-primary btn-sm shadow-sm">
              <i class="fas fa-plus fa-sm"></i>Tambah</a>
          </div>
              <div class="card-body">
@@ -39,10 +39,11 @@
                      <tr>
                        <th>No</th>
                        <th>Nama Pelanggan</th>
-                       <th>Bulan Penggunaan</th>
-                       <th>Meter Awal</th>
-                       <th>Meter Akhir</th>
-                       <th>Tanggal Check</th>
+                       <th>Jumlah Meter</th>
+                       <th>Tarif Kwh</th>
+                       <th>Total Bayar</th>
+                       <th>Status</th>
+                       <th>Bukti Pemabayaran</th>
                        <th>Tindakan</th>
                      </tr>
                    </thead>
@@ -50,27 +51,26 @@
                      <tr>
                        <th>No</th>
                        <th>Nama Pelanggan</th>
-                       <th>Bulan Penggunaan</th>
-                       <th>Meter Awal</th>
-                       <th>Meter Akhir</th>
-                       <th>Tanggal Check</th>
+                       <th>Jumlah Meter</th>
+                       <th>Tarif Kwh</th>
+                       <th>Total Bayar</th>
+                       <th>Status</th>
+                       <th>Bukti Pemabayaran</th>
                        <th>Tindakan</th>
                      </tr>
                    </tfoot>
                    <tbody>
-                   @foreach ($pakai as $guna)
+                   @foreach ($tagihan as $tagih)
                      <tr>
                        <td width="10%">{{$loop->iteration}}</td>
-                       <td>{{$guna->pelanggan->name}}</td>
-                       <td>{{$guna->penggunaan}}</td>
-                       <td>{{$guna->meter_awal }}</td>
-                       <td>{{$guna->meter_akhir }}</td>
-                       <td>{{$guna->tgl_cek }}</td>
+                       <td>{{ $tagih->pelanggan->name }}</td>
+                       <td>{{$tagih->jumlah_meter }}</td>
+                       <td>{{ $tagih->tarif_kwh }}</td>
+                       <td>@rupiah($tagih->jumlah_bayar)</td>
+                       <td>{{ $tagih->status }}</td>
+                       <td>{{ $tagih->bukti }}</td>
                        <td>
-                         <a href ="{{route('edit.penggunaan', $guna->id)}}" title="Edit" class="btn btn-circle btn-warning">
-                             <i class="fas fa-pen"></i>
-                         </a>
-                         <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$guna->id}})" data-target="#DeleteModal" class="btn btn-circle btn-danger"><i class="fa fa-trash"></i></a>
+                         <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$tagih->id}})" data-target="#DeleteModal" class="btn btn-circle btn-danger"><i class="fa fa-trash"></i></a>
                        </td>
                      </tr>
                    @endforeach
@@ -83,7 +83,7 @@
       function deleteData(id)
       {
           var id = id;
-          var url = '{{ route("hapus.penggunaan", ":id") }}';
+          var url = '{{ route("hapus.tagihan", ":id") }}';
           url = url.replace(':id', id);
           $("#deleteForm").attr('action', url);
       }

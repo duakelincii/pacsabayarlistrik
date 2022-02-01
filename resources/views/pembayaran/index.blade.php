@@ -29,7 +29,7 @@
     <div class="card shadow mb-4">
         <div class="card-header d-sm-flex align-items-center justify-content-between py-3">
             <h6 class="m-0 font-weight-bold text-primary">Daftar Pelanggan Listrik Murah</h6>
-            <a href="{{route('register')}}" class="d-none d-sm-inline-block btn btn-primary btn-sm shadow-sm">
+            <a href="{{route('tambah.pelanggan')}}" class="d-none d-sm-inline-block btn btn-primary btn-sm shadow-sm">
                 <i class="fas fa-plus fa-sm"></i>Tambah</a>
         </div>
             <div class="card-body">
@@ -37,10 +37,8 @@
                 <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>No Pelanggan</th>
-                      <th>Nama Pelanggan</th>
-                      <th>Email</th>
-                      <th>Alamat</th>
+                      <th>No</th>
+                      <th>Nama Lengkap</th>
                       <th>Telpon</th>
                       <th>Daya Pemakaian</th>
                       <th>Tindakan</th>
@@ -48,22 +46,18 @@
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>No Pelanggan</th>
+                      <th>No</th>
                       <th>Nama Lengkap</th>
-                      <th>Email</th>
-                      <th>Alamat</th>
                       <th>Telpon</th>
                       <th>Daya Pemakaian</th>
                       <th>Tindakan</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                 @foreach ($users as $p)
+                 @foreach ($data as $p)
                  <tr>
-                     <td>{{$p->no_pelanggan}}</td>
+                     <td>{{$loop->iteration}}</td>
                      <td>{{$p->name}}</td>
-                     <td>{{$p->email}}</td>
-                     <td>{{$p->alamat}}</td>
                      <td>{{$p->phone}}</td>
                      <td>{{$p->tarif->no_tarif}}</td>
                      <td>

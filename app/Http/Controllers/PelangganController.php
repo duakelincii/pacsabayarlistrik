@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Pelanggan;
-use App\Penggunaan;
-use App\Tagihan;
 use App\Tarif;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Hash;
 
-class TagihanController extends Controller
+class PelangganController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +17,8 @@ class TagihanController extends Controller
      */
     public function index()
     {
-        $tagihan = Tagihan::all();
-        return view('admin.tagihan.index',compact('tagihan'));
+        $data = Pelanggan::get();
+        return view('admin.pelanggan.index',compact('data'));
     }
 
     /**
@@ -30,9 +28,8 @@ class TagihanController extends Controller
      */
     public function create()
     {
-        $tarif = Tarif::get();
-        $pelanggan = Pelanggan::get();
-        return view('admin.tagihan.tambah',compact('pelanggan','tarif'));
+        $datas = Tarif::get();
+        return view('admin.pelanggan.tambah',compact('datas'));
     }
 
     /**
@@ -43,18 +40,28 @@ class TagihanController extends Controller
      */
     public function store(Request $request)
     {
-        $data = DB::table('tagihan')->insert([
-            'id_user'           => $request->id_user,
-            'tagihan_bulan'     => $request->tagihan_bulan,
-            'jumlah_meter'      => $request->jumlah_meter,
-            'tarif_kwh'         => $request->tarif_kwh,
-            'jumlah_bayar'      => $request->jumlah_meter*$request->tarif_kwh,
-            'status'            => $request->status,
+        DB::table('pelanggan')->insert([
+            'name'      => $request->name,
+            'tgl_lahir' => $request->tgl_lahir,
+            'username'  => $request->username,
+            'password'  => Hash::make($request->password),
+            'phone'     => $request->phone,
+            'id_tarif'  => $request->id_tarif,
         ]);
-        $pesan = 'Tagihan pelanggan berhasil diinput';
-        return redirect(route('tagihan'))->with('pesan',$pesan);
+        $pesan = 'data pelanggan berhasil disimpan';
+        return redirect(route('pelanggan'))->with('pesan',$pesan);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -64,8 +71,7 @@ class TagihanController extends Controller
      */
     public function edit($id)
     {
-        Tagihan::findOrFail($id);
-        return view('admin.tagihan.edit');
+        //
     }
 
     /**
@@ -88,9 +94,6 @@ class TagihanController extends Controller
      */
     public function destroy($id)
     {
-        $tagihan = Tagihan::findOrFail($id);
-        $tagihan->delete();
-        $error = 'data tagihan berhasil dihapus';
-        return redirect(route('tagihan'))->with('error',$error);
+        //
     }
 }
