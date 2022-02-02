@@ -20,14 +20,16 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'] , function(){
-    Route::get('/', 'HomeController@pelanggan')->name('home');
-
+Route::get('/',function()
+{
+    return view('auth.login');
 });
 
 
-Route::group(['middleware' => 'auth','is_admin'] , function(){
 
+Route::group(['middleware' => ['auth:user,pengguna']] , function(){
+
+    Route::get('/user/home', 'HomeController@pelanggan')->name('home');
     Route::get('/admin/home', 'HomeController@admin')->name('admin.home');
 
     //pelanggan
@@ -58,8 +60,10 @@ Route::group(['middleware' => 'auth','is_admin'] , function(){
     Route::get('/tagihan/edit/{id}','TagihanController@edit')->name('edit.tagihan');
     Route::post('/update/tagihan','TagihanController@update')->name('update.tagihan');
     Route::delete('/tagihan/{id}','TagihanController@destroy')->name('hapus.tagihan');
+
+    //pembayaran
+    Route::get('/pembayaran','PembayaranController@index')->name('pembayaran');
 });
 
-Route::get('/pembayaran','PembayaranController@index')->name('pembayaran')->middleware('auth');
 
 

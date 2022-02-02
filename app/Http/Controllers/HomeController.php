@@ -23,7 +23,8 @@ class HomeController extends Controller
      */
     public function pelanggan()
     {
-        return view('pelanggan.index');
+
+        return view('user.index');
     }
 
     public function admin()

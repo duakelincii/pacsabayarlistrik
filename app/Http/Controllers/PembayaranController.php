@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Pelanggan;
+use App\Pembayaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PembayaranController extends Controller
 {
@@ -13,7 +16,16 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        //
+        if(Auth::user()->is_admin == 1)
+        {
+            $data = Pembayaran::get();
+        }else{
+            $data = Pembayaran::whereHas('pelanggan',function($q){
+                $q->where('id_user');
+            });
+        }
+
+        return view ('pembayaran.index',compact('data'));
     }
 
     /**

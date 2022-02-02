@@ -28,8 +28,8 @@
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <div class="input-group mb-2">
                     <select name="id_tarif" id="id_tarif" class="form-control">
-                        @foreach ($datas as $tarif )
                         <option value="">Pilih Daya</option>
+                        @foreach ($datas as $tarif )
                         <option value="{{$tarif->id}}">{{$tarif->no_tarif}}</option>
                         @endforeach
                     </select>

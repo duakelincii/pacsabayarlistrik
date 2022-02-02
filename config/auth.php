@@ -46,6 +46,16 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'pengguna' => [
+            'driver' => 'session',
+            'provider' => 'pelanggan',
+        ],
+
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
     ],
 
     /*
@@ -71,10 +81,10 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'pelanggan' => [
+            'driver' => 'eloquent',
+            'model' => App\Pelanggan::class,
+        ],
     ],
 
     /*

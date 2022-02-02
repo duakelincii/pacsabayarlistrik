@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Psy\Command\EditCommand;
 
 class LoginController extends Controller
 {
@@ -56,15 +58,10 @@ class LoginController extends Controller
             'password' => $request->password,
         ];
 
-        if (auth()->attempt($login,$remember)) {
-            if (auth()->user()->is_admin == 1) {
-                return redirect()->route('admin.home');
-            }else if(DB::table('pelanggan')->is_admin == 0){
-                return redirect()->route('home');
-            }
-        }else{
-            return redirect()->route('login')
-                ->with('error','Email-Address And Password Are Wrong.');
+        if(Auth::guard('pengguna')->attempt($login,$remember)){
+            return redirect(route('home'));
+        }elseif(Auth::guard('user')->attempt($login,$remember)){
+            return redirect(route('admin.home'));
         }
     }
 }
